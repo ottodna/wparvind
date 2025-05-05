@@ -1,10 +1,11 @@
-# Use an official Nginx image to serve the static site
+# Build Astro site
+FROM node:18.19.1-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN npm ci
+RUN npm run build
+
+# Serve via Nginx
 FROM nginx:alpine
-
-# Copy the Astro build output into the Nginx web directory
-COPY dist /usr/share/nginx/html
-
-# Optional: replace default Nginx config (if needed)
-# COPY nginx.conf /etc/nginx/nginx.conf
-
+COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 80
