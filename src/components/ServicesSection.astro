@@ -1,0 +1,28 @@
+---
+const services = [
+  { title: "WordPress Development", slug: "wordpress" },
+  { title: "Laravel Development", slug: "laravel" },
+  { title: "Flutter Development", slug: "flutter" },
+];
+---
+
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-background text-text">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-3xl font-bold font-sans text-primary mb-4">My Services</h2>
+    <p class="text-lg text-secondary mb-12 max-w-2xl mx-auto">
+      I specialize in full-stack development using modern tools with performance in mind.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {services.map(service => (
+        <a
+          href={`/services/${service.slug}`}
+          class="block p-6 bg-white rounded-lg shadow hover:shadow-md transition border border-gray-100 hover:border-primary"
+        >
+          <h3 class="text-xl font-semibold font-sans text-text mb-2">{service.title}</h3>
+          <p class="text-sm text-secondary">Learn more →</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

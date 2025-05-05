@@ -1,0 +1,25 @@
+---
+// src/pages/portfolio.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Portfolio - WordPress Projects | Arvind">
+  <section class="py-20 px-6 md:px-12 lg:px-24 text-center">
+    <h1 class="text-4xl font-bold mb-6">Portfolio</h1>
+    <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+      A collection of my favorite WordPress builds — fully custom, SEO-optimized, and built for business.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="rounded shadow bg-white p-4">
+        <h3 class="text-lg font-bold mb-2">ClaimTimeClock.com</h3>
+        <p class="text-sm text-gray-600">Law firm CMS + SEO system, 100% custom theme, 95+ mobile score.</p>
+      </div>
+      <div class="rounded shadow bg-white p-4">
+        <h3 class="text-lg font-bold mb-2">BhaktiSangrah App</h3>
+        <p class="text-sm text-gray-600">Mobile-first devotional content, blazing-fast WordPress API.</p>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </section>
+</Layout>

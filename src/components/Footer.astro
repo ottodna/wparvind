@@ -1,0 +1,40 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { name: 'Twitter', href: '#', icon: '<svg class="h-6 w-6" ...>' },
+  { name: 'LinkedIn', href: '#', icon: '<svg class="h-6 w-6" ...>' },
+  { name: 'GitHub', href: '#', icon: '<svg class="h-6 w-6" ...>' },
+];
+---
+
+<footer class="bg-background border-t border-gray-200 mt-16 text-text">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12">
+    <div class="grid gap-8 md:grid-cols-3 items-center text-center md:text-left">
+
+      <!-- Navigation -->
+      <nav class="space-x-4">
+        <a href="/services" class="text-sm text-secondary hover:text-primary transition">Services</a>
+        <a href="/portfolio" class="text-sm text-secondary hover:text-primary transition">Portfolio</a>
+        <a href="/contact" class="text-sm text-secondary hover:text-primary transition">Contact</a>
+        <a href="/privacy" class="text-sm text-secondary hover:text-primary transition">Privacy</a>
+      </nav>
+
+      <!-- Copyright -->
+      <div>
+        <p class="text-sm text-secondary">&copy; {currentYear} <span class="font-semibold">wparvind.com</span>. All rights reserved.</p>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="flex justify-center md:justify-end space-x-4">
+        {socialLinks.map(link => (
+          <a href={link.href} class="text-secondary hover:text-primary transition" target="_blank" rel="noopener noreferrer">
+            <span class="sr-only">{link.name}</span>
+            <Fragment set:html={link.icon} />
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</footer>

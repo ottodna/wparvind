@@ -1,0 +1,25 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const pageTitle = 'WordPress Development';
+const pageDescription = 'Custom themes, plugins, SEO, speed, and scalable WordPress solutions.';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: pageTitle },
+];
+---
+
+<ServiceLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs}>
+  <div class="mt-8 space-y-6 text-gray-700">
+    <p>I build fast, scalable, and SEO-friendly WordPress websites tailored for your business. Whether it's a custom theme, WooCommerce integration, or migration from another CMS — I’ve got you covered.</p>
+    <ul class="list-disc list-inside">
+      <li>Custom WordPress Themes from scratch</li>
+      <li>Performance & Core Web Vitals Optimization</li>
+      <li>WooCommerce Setup & Optimization</li>
+      <li>Security & Maintenance</li>
+      <li>Advanced SEO & Schema Integration</li>
+    </ul>
+  </div>
+</ServiceLayout>

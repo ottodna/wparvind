@@ -1,0 +1,40 @@
+---
+// src/layouts/Layout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+// Make sure this global.css file contains your @tailwind directives
+// and REMOVE any @font-face rules for Merriweather/Lato from here.
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  currentPath?: string;
+}
+const { title, description, currentPath } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description || title} />
+
+    {/* --- Google Fonts Links --- */}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {/* CORRECTED: Added weight 500 (0,500) for Lato */}
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,500;0,700;1,400&family=Merriweather:opsz,wght@18..144,300..900&display=swap" rel="stylesheet">
+    {/* --- End Google Fonts Links --- */}
+
+  </head>
+  <body class="font-sans text-gray-900 bg-white"> {/* Default font is Lato */}
+    <Header /> {/* Will inherit Lato, font-medium should now work */}
+    <main>
+      <slot /> {/* Apply classes like font-serif here as needed */}
+    </main>
+    <Footer />
+  </body>
+</html>
