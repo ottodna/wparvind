@@ -1,72 +1,24 @@
 ---
-// src/components/CTASection.astro
-// Updated CTA section using standard <img> tag for image in /public directory
+export interface Props {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  imageSrc: string;
+}
 
-import { Icon } from 'astro-icon/components'; // Using astro-icon (ensure @iconify-json/mdi is installed)
-
-// --- Configuration ---
-// Path to the image within the 'public' directory (served from root '/')
-const ctaImagePublicPath = '/arvind-cta-photo.webp';
-// --- END CONFIGURATION ---
-
-// Note: Astro Assets <Image> component and imports are NOT used for /public images.
+const { title, subtitle, ctaText, ctaLink, imageSrc } = Astro.props;
 ---
 
-<section class="bg-background-light py-16 sm:py-24 lg:py-32"> {/* Or bg-white */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* Inner container with gradient, rounded corners, and padding */}
-    <div class="relative overflow-hidden bg-gradient-to-r from-blue-600 to-primary-dark rounded-2xl shadow-xl px-8 py-12 sm:px-12 sm:py-16 md:p-16">
-
-      <div class="relative grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 items-center">
-
-        {/* --- Text Content (Left Column) --- */}
-        <div class="text-center md:text-left z-10">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight text-white">
-            Achieve Your Online Goals With A <span class="block sm:inline">Custom WordPress Website</span>
-          </h2>
-          {/* Accent Divider */}
-          <div class="mt-4 mb-8 h-1.5 w-20 bg-white/40 mx-auto md:mx-0 rounded-full"></div>
-          {/* Feature List */}
-          <ul class="space-y-3 mb-8 text-left inline-block max-w-md mx-auto md:mx-0">
-            <li class="flex items-start">
-              <Icon name="mdi:check-circle-outline" class="w-6 h-6 text-blue-100/90 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="font-body text-lg text-blue-100">Expert guidance & consultation</span>
-            </li>
-            <li class="flex items-start">
-              <Icon name="mdi:check-circle-outline" class="w-6 h-6 text-blue-100/90 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="font-body text-lg text-blue-100">Custom solutions tailored to your business</span>
-            </li>
-             <li class="flex items-start">
-              <Icon name="mdi:check-circle-outline" class="w-6 h-6 text-blue-100/90 mr-3 mt-0.5 flex-shrink-0" />
-              <span class="font-body text-lg text-blue-100">Flexible remote collaboration process</span>
-            </li>
-          </ul>
-          <p class="font-body text-lg text-blue-100 mb-10">
-            Discuss your project requirements and see how I can help build a website that drives results for your business.
-          </p>
-          {/* CTA Button */}
-          <a href="/contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-primary transition duration-150 ease-in-out transform hover:scale-105">
-            Let's Discuss
-          </a>
-        </div>
-
-        {/* --- Image (Right Column) --- REVISED --- */}
-        <div class="hidden md:flex justify-center items-center relative order-first md:order-last">
-          {/* This container controls the max size and centers the image */}
-          <div class="relative w-full max-w-xs sm:max-w-sm lg:max-w-md">
-            {/* Standard img tag, remove absolute positioning and fixed container height */}
-            <img
-              src={ctaImagePublicPath}
-              alt="Arvind Sharma - WordPress Developer"
-              class="relative z-10 rounded-xl shadow-lg w-full h-auto object-cover"
-              loading="lazy"
-              width="400" height="400" 
-            />
-          </div>
-        </div>
-        {/* --- END REVISION --- */}
-
-      </div> {/* End Grid */}
-    </div> {/* End Inner Container */}
-  </div> {/* End Standard Max-Width Container */}
+<section class="bg-background-light dark:bg-header-dark py-24">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+    <div class="rounded-2xl bg-primary text-white p-12 md:p-16 shadow-xl grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-4xl font-heading font-bold mb-6">{title}</h2>
+        <p class="text-lg mb-6 opacity-90">{subtitle}</p>
+        <a href={ctaLink} class="btn bg-white text-primary hover:bg-blue-100 transition">{ctaText}</a>
+      </div>
+      <img src={imageSrc} alt={title} class="rounded-xl shadow-lg w-full max-w-sm mx-auto md:mx-0" loading="lazy" />
+    </div>
+  </div>
 </section>

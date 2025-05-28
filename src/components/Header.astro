@@ -1,37 +1,47 @@
 ---
 // src/components/Header.astro
-// Modern header with Logo (left), Nav (center/right), Button (far right)
-// Includes a responsive mobile menu toggle.
+// Modern header with Logo (left), Nav (center/right), Dark Mode Toggle (far right)
+// Includes a responsive mobile menu toggle with dark mode support.
 ---
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+<header class="sticky top-0 z-50 bg-[#F9FAFB]/95 dark:bg-[#1E293B]/95 backdrop-blur-sm border-b border-[#E5E7EB] dark:border-[#334155] transition-all duration-200 ease-in-out">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
 
+      <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href="/" aria-label="Homepage"> <img class="h-12 w-auto" src="/wparvind-logo.webp" alt="wparvind.com Logo" />
-
+        <a href="/" aria-label="Homepage">
+          <img class="h-12 w-auto" src="/wparvind-logo.webp" alt="wparvind.com Logo" />
         </a>
       </div>
 
+      <!-- Desktop Nav -->
       <div class="hidden md:flex md:items-center md:space-x-6 lg:space-x-8">
         <nav class="flex space-x-4 lg:space-x-6" aria-label="Main Navigation">
-          <a href="/" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md">Home</a>
-          <a href="/services" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md">Services</a>
-          <a href="/portfolio" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md">Portfolio</a>
-          <a href="/reviews" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-md">Reviews</a>
-          </nav>
-        <a href="/contact" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200">
+          <a href="/" class="text-sm font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:text-[#1A5CFF] transition-colors duration-200 px-3 py-2 rounded-md">Home</a>
+          <a href="/services" class="text-sm font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:text-[#1A5CFF] transition-colors duration-200 px-3 py-2 rounded-md">Services</a>
+          <a href="/portfolio" class="text-sm font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:text-[#1A5CFF] transition-colors duration-200 px-3 py-2 rounded-md">Portfolio</a>
+          <a href="/reviews" class="text-sm font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:text-[#1A5CFF] transition-colors duration-200 px-3 py-2 rounded-md">Reviews</a>
+        </nav>
+
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle" class="text-xl px-3 py-1 rounded hover:bg-border-light dark:hover:bg-border-dark transition">
+          🌙
+        </button>
+
+        <!-- CTA Button -->
+        <a href="/contact" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-md shadow-sm text-white bg-[#1A5CFF] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A5CFF] transition">
           Contact Us
         </a>
       </div>
 
+      <!-- Mobile Menu Button -->
       <div class="md:hidden flex items-center">
-        <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+        <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#1A5CFF]" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
-          <svg id="icon-menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg id="icon-menu" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg id="icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg id="icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -40,69 +50,67 @@
     </div>
   </div>
 
-  <div class="hidden md:hidden border-t border-gray-200" id="mobile-menu">
+  <!-- Mobile Menu -->
+  <div class="hidden md:hidden border-t border-[#E5E7EB] dark:border-[#334155]" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Home</a>
-      <a href="/services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Services</a>
-      <a href="/portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Portfolio</a>
-      <a href="/reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Reviews</a>
+      <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:bg-gray-100 dark:hover:bg-[#334155]">Home</a>
+      <a href="/services" class="block px-3 py-2 rounded-md text-base font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:bg-gray-100 dark:hover:bg-[#334155]">Services</a>
+      <a href="/portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:bg-gray-100 dark:hover:bg-[#334155]">Portfolio</a>
+      <a href="/reviews" class="block px-3 py-2 rounded-md text-base font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:bg-gray-100 dark:hover:bg-[#334155]">Reviews</a>
+
+      <!-- Mobile Dark Mode Toggle -->
+      <button id="dark-mode-toggle" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-[#1F2937] dark:text-[#F3F4F6] hover:bg-gray-100 dark:hover:bg-[#334155]">
+        🌙 Toggle Theme
+      </button>
     </div>
-    <div class="pt-4 pb-3 border-t border-gray-200">
-       <div class="px-5">
-         <a href="/contact" class="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-           Contact Us
-         </a>
-       </div>
+
+    <div class="pt-4 pb-3 border-t border-[#E5E7EB] dark:border-[#334155]">
+      <div class="px-5">
+        <a href="/contact" class="block w-full text-center px-4 py-2 rounded-md shadow-sm text-white bg-[#1A5CFF] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A5CFF]">
+          Contact Us
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
 <script>
-  // Simple script to toggle mobile menu visibility and icons
+  // Mobile Menu Toggle
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const iconMenu = document.getElementById('icon-menu');
   const iconClose = document.getElementById('icon-close');
 
-  // TS FIX: Check if elements exist before adding listeners
   if (menuButton && mobileMenu && iconMenu && iconClose) {
     menuButton.addEventListener('click', () => {
       const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-      // TS FIX: Convert boolean to string for setAttribute
       menuButton.setAttribute('aria-expanded', String(!isExpanded));
       mobileMenu.classList.toggle('hidden');
       iconMenu.classList.toggle('hidden');
       iconClose.classList.toggle('hidden');
     });
 
-    // Close mobile menu if user clicks outside of it (optional but good UX)
     document.addEventListener('click', (event) => {
-      // TS FIX: Check if menuButton/mobileMenu are non-null before using .contains
-      // TS FIX: Assert event.target as Node for .contains method
-      const targetNode = event.target as Node;
+      const targetNode = event.target as Node; // ✅ Add this cast
       const isClickInsideMenu = mobileMenu.contains(targetNode);
       const isClickOnButton = menuButton.contains(targetNode);
       const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
 
       if (!isClickInsideMenu && !isClickOnButton && isExpanded) {
-         menuButton.setAttribute('aria-expanded', 'false');
-         mobileMenu.classList.add('hidden');
-         iconMenu.classList.remove('hidden');
-         iconClose.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
       }
     });
 
-    // Close mobile menu on navigation (optional but good UX)
     mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            // TS FIX: Checks inside the if block ensure menuButton etc. are not null here
-            menuButton.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.add('hidden');
-            iconMenu.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-        });
+      link.addEventListener('click', () => {
+        menuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        iconMenu.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
     });
-  } else {
-    console.warn('Header mobile menu elements not found. Menu toggle might not work.');
   }
 </script>

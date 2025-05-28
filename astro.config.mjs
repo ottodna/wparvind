@@ -1,15 +1,19 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
-import icon from 'astro-icon';
+import compress from 'astro-compress';
+import astroIcon from 'astro-icon';
 
-// https://astro.build/config
 export default defineConfig({
+  site: 'https://wparvind.com', // ✅ Important for sitemap & SEO
   integrations: [
     tailwind(),
     sitemap(),
-    icon()
-  ]
+    astroIcon(), 
+    compress(), // gzip + brotli
+  ],
+  build: {
+    format: 'directory',
+  },
+  compressHTML: true, // inline compression for HTML output
 });

@@ -1,33 +1,60 @@
 ---
-import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
 export interface Props {
   title: string;
   description?: string;
   breadcrumbs?: { label: string; href?: string }[];
 }
-
-const { title, description, breadcrumbs = [] } = Astro.props;
+const { title, description, breadcrumbs } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
-  <section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-    <div class="max-w-5xl mx-auto">
-      {breadcrumbs.length > 0 && (
-        <nav class="mb-6 text-sm text-gray-500">
-          {breadcrumbs.map((crumb, index) => (
-            <span>
-              {crumb.href
-                ? <a href={crumb.href} class="hover:text-primary">{crumb.label}</a>
-                : <span class="text-gray-700">{crumb.label}</span>}
-              {index < breadcrumbs.length - 1 && ' / '}
-            </span>
-          ))}
-        </nav>
-      )}
-      <h1 class="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-      <p class="text-lg text-gray-600">{description}</p>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (theme === 'dark') root.classList.add('dark');
+        else if (theme === 'light') root.classList.remove('dark');
+        else if (prefersDark) root.classList.add('dark');
+        else root.classList.remove('dark');
+      })();
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description || title} />
+
+    <!-- SEO + Social Meta -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description || title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wparvind.com/services" />
+    <meta property="og:image" content="/og-image.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+
+  <body class="font-sans text-[#1F2937] bg-white dark:bg-[#0F172A] dark:text-[#F3F4F6] transition-all duration-200 ease-in-out">
+    <Header />
+    <main>
       <slot />
-    </div>
-  </section>
-</Layout>
+    </main>
+    <Footer />
+    <script type="module" src="/scripts/darkMode.js"></script>
+  </body>
+</html>

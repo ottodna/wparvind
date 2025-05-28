@@ -1,18 +1,21 @@
 ---
-// src/components/AboutSection.astro
-// About Me section, styled consistently with Header/Hero/Theme
+export interface Props {
+  title: string;
+  description: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const { title, description, ctaText = 'Let\'s Discuss Your Project', ctaLink = '/contact' } = Astro.props;
 ---
-<section id="about" class="bg-background text-text py-24 px-6 md:px-12 lg:px-24 scroll-mt-20">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl font-bold font-sans text-primary mb-4">About Me</h2>
-    <div class="h-1.5 w-16 bg-accent mx-auto rounded-full mb-8"></div>
-    <p class="text-lg text-secondary leading-relaxed">
-      I'm <span class="text-text font-semibold">Arvind Sharma</span>, a dedicated WordPress developer with 8+ years of experience building fast, SEO-optimized websites. Based in Panchkula, I work remotely with global clients, ensuring clear communication and long-term performance.
-    </p>
+
+<section class="bg-background-light dark:bg-background-dark text-text py-24 px-6 md:px-12 lg:px-24 scroll-mt-20">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl font-heading font-bold text-primary mb-4">{title}</h2>
+    <div class="h-1.5 w-16 bg-accent rounded-full mb-8"></div>
+    <p class="text-lg text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">{description}</p>
     <div class="mt-10">
-      <a href="/contact" class="px-6 py-3 bg-primary text-white rounded-md font-medium hover:bg-blue-700 transition-transform transform hover:scale-105 shadow">
-        Let's Discuss Your Project
-      </a>
+      <a href={ctaLink} class="btn btn-primary hover:scale-105">{ctaText}</a>
     </div>
   </div>
 </section>

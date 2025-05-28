@@ -1,0 +1,37 @@
+---
+// src/components/ContactForm.astro
+export interface Props {
+  title?: string;
+  action?: string;
+}
+
+const {
+  title = 'Send Me a Message',
+  action = '#'
+} = Astro.props;
+---
+
+<div class="card border border-border-light dark:border-border-dark">
+  <h2 class="text-2xl font-heading font-semibold mb-6">{title}</h2>
+  <form action={action} method="POST" class="space-y-6">
+    <div>
+      <label for="name" class="block text-sm font-medium mb-1">Full Name <span class="text-red-500">*</span></label>
+      <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-border-light dark:border-border-dark rounded-md placeholder-gray-400 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Your Name" />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium mb-1">Email Address <span class="text-red-500">*</span></label>
+      <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-border-light dark:border-border-dark rounded-md placeholder-gray-400 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="you@example.com" />
+    </div>
+    <div>
+      <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+      <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-border-light dark:border-border-dark rounded-md placeholder-gray-400 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Project Inquiry / Question" />
+    </div>
+    <div>
+      <label for="message" class="block text-sm font-medium mb-1">Your Message <span class="text-red-500">*</span></label>
+      <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-border-light dark:border-border-dark rounded-md placeholder-gray-400 focus:ring-2 focus:ring-primary focus:outline-none resize-y" placeholder="Tell me about your project or question..."></textarea>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary w-full sm:w-auto hover:scale-105" aria-label="Send contact message">Send Message</button>
+    </div>
+  </form>
+</div>

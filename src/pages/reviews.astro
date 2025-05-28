@@ -1,20 +1,36 @@
 ---
-// src/pages/reviews.astro
 import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+
+const heroTitle = "Client Reviews";
+const heroSubtitle = "Hear directly from businesses and professionals who’ve worked with me on WordPress websites, APIs, and mobile apps.";
+
+const testimonials = [
+  {
+    quote: "Arvind transformed our old site into a fast, modern experience. SEO rankings went up within weeks.",
+    name: "Rohit M., Law Firm",
+  },
+  {
+    quote: "Best developer I’ve worked with. Clean code, honest communication, and amazing speed results.",
+    name: "Priya S., E-commerce Brand",
+  },
+  {
+    quote: "The new CMS Arvind built saved us hours of manual work every week. Highly recommended!",
+    name: "Rahul D., Startup CTO",
+  },
+];
 ---
 
-<Layout title="Client Reviews - WordPress Developer Arvind">
-  <section class="py-20 px-6 md:px-12 lg:px-24 text-center bg-white">
-    <h1 class="text-4xl font-bold mb-6">Client Reviews</h1>
-    <div class="max-w-2xl mx-auto space-y-8">
-      <blockquote class="border-l-4 border-blue-500 pl-4 text-left">
-        <p class="italic">“Arvind transformed our old site into a fast, modern experience. SEO rankings went up within weeks.”</p>
-        <footer class="mt-2 text-sm text-gray-600">– Rohit M., Law Firm</footer>
-      </blockquote>
-      <blockquote class="border-l-4 border-blue-500 pl-4 text-left">
-        <p class="italic">“Best developer I’ve worked with. Clean code, honest communication, and amazing speed results.”</p>
-        <footer class="mt-2 text-sm text-gray-600">– Priya S., E-commerce Brand</footer>
-      </blockquote>
-    </div>
-  </section>
+<Layout title="Client Reviews - WordPress Developer Arvind" description="Reviews from real clients about working with Arvind Sharma. WordPress, SEO, speed optimization, and custom development success stories.">
+  <HeroSection 
+    titleTop="Client"
+    titleAccent="Reviews"
+    subtitleHtml="Hear directly from businesses and professionals who’ve worked with me on <strong>WordPress websites</strong>, APIs, and mobile apps."
+    buttons={[
+      { label: "Start Your Project", href: "/contact", variant: "primary" }
+    ]}
+  />
+
+  <TestimonialsSection title="What Clients Say" testimonials={testimonials} />
 </Layout>

@@ -1,37 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+
+const heroTitle = "Explore My Services";
+const heroSubtitle = "From custom WordPress sites to mobile apps and backend systems, I offer modern, scalable solutions tailored to your business.";
 
 const services = [
-  { title: "WordPress Development", slug: "wordpress", description: "Custom themes, SEO, speed & WooCommerce." },
-  { title: "Laravel Development", slug: "laravel", description: "Backend systems, REST APIs & dashboards." },
-  { title: "Flutter Development", slug: "flutter", description: "Cross-platform mobile apps for Android & iOS." },
+  {
+    title: "WordPress Development",
+    slug: "wordpress",
+    desc: "Custom themes, SEO, WooCommerce, and blazing-fast sites.",
+    icon: "mdi:wordpress",
+  },
+  {
+    title: "Laravel Development",
+    slug: "laravel",
+    desc: "REST APIs, dashboards, and backend systems with Laravel.",
+    icon: "mdi:language-php",
+  },
+  {
+    title: "Flutter Development",
+    slug: "flutter",
+    desc: "Cross-platform mobile apps for iOS and Android.",
+    icon: "mdi:cellphone",
+  },
 ];
 
-const breadcrumbs = [
-  { label: 'Home', href: '/' },
-  { label: 'Services' }
+const features = [
+  { title: "Performance First", description: "Every project is optimized for speed and reliability." },
+  { title: "End-to-End Ownership", description: "From planning to launch — I handle it all." },
+  { title: "Built For Growth", description: "Codebases designed to evolve as your business grows." },
+  { title: "Future-Proof Stack", description: "Using the latest frameworks and best practices." },
 ];
 ---
 
-<Layout title="Services - Arvind" description="Explore full-stack services including WordPress, Laravel, and Flutter.">
-  <HeroSection breadcrumbs={breadcrumbs} />
+<Layout title="Services - Arvind" description="Explore WordPress, Laravel, and Flutter services by Arvind Sharma. Built for speed, SEO, and growth.">
+  <HeroSection 
+    titleTop="Explore My"
+    titleAccent="Services"
+    subtitleHtml="From custom WordPress sites to mobile apps and <strong>scalable backend systems</strong>, I deliver tailored business solutions."
+    buttons={[
+      { label: "Get In Touch", href: "/contact", variant: "primary" },
+      { label: "See Portfolio", href: "/portfolio", variant: "secondary" }
+    ]}
+  />
 
-  <section class="py-20 px-6 md:px-12 lg:px-24 bg-background text-text">
-    <div class="max-w-7xl mx-auto text-center">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary font-sans mb-4">Services I Offer</h1>
-      <p class="text-lg text-secondary mb-12 max-w-2xl mx-auto">
-        From websites to mobile apps, I provide performance-focused development services across popular tech stacks.
-      </p>
+  <ServicesSection
+    title="What I Offer"
+    subtitle="Build scalable websites, backend systems, and mobile apps tailored to your business goals."
+    services={services}
+  />
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {services.map(service => (
-          <a href={`/services/${service.slug}`} class="block p-6 bg-white rounded-lg shadow hover:shadow-md transition border border-gray-100 hover:border-primary text-left">
-            <h3 class="text-xl font-semibold text-text mb-2">{service.title}</h3>
-            <p class="text-sm text-gray-500">{service.description}</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+  <FeaturesSection title="Why Choose Me?" features={features} />
 </Layout>

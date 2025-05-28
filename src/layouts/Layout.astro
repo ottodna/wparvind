@@ -1,9 +1,6 @@
 ---
-// src/layouts/Layout.astro
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-// Make sure this global.css file contains your @tailwind directives
-// and REMOVE any @font-face rules for Merriweather/Lato from here.
 import '../styles/global.css';
 
 export interface Props {
@@ -15,26 +12,70 @@ const { title, description, currentPath } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (theme === 'dark') {
+          root.classList.add('dark');
+        } else if (theme === 'light') {
+          root.classList.remove('dark');
+        } else if (prefersDark) {
+          root.classList.add('dark');
+        } else {
+          root.classList.remove('dark');
+        }
+      })();
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description || title} />
 
-    {/* --- Google Fonts Links --- */}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {/* CORRECTED: Added weight 500 (0,500) for Lato */}
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,500;0,700;1,400&family=Merriweather:opsz,wght@18..144,300..900&display=swap" rel="stylesheet">
-    {/* --- End Google Fonts Links --- */}
+    <!-- SEO + Social Meta -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description || title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wparvind.com/" />
+    <meta property="og:image" content="/og-image.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Preload Key Assets -->
+    <link rel="preload" as="image" href="/arvind-cta-photo.webp" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+      {`{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Arvind Sharma",
+        "url": "https://wparvind.com",
+        "jobTitle": "WordPress Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "wparvind.com"
+        }
+      }`}
+    </script>
   </head>
-  <body class="font-sans text-gray-900 bg-white"> {/* Default font is Lato */}
-    <Header /> {/* Will inherit Lato, font-medium should now work */}
+
+  <body class="font-sans text-[#1F2937] bg-white dark:bg-[#0F172A] dark:text-[#F3F4F6] transition-all duration-200 ease-in-out">
+    <Header />
     <main>
-      <slot /> {/* Apply classes like font-serif here as needed */}
+      <slot />
     </main>
     <Footer />
+    <script type="module" src="/scripts/darkMode.js"></script>
   </body>
 </html>

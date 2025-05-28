@@ -1,0 +1,61 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import AboutSection from '../../components/AboutSection.astro';
+import ServiceFeatureGrid from '../../components/ServiceFeatureGrid.astro';
+
+const features = [
+  {
+    title: "Secure API Architecture",
+    desc: "Laravel includes CSRF protection, route guards, and authentication scaffolding to ensure robust API security.",
+  },
+  {
+    title: "Blade Template Engine",
+    desc: "Lightning-fast template rendering with support for reusable components and clean syntax.",
+  },
+  {
+    title: "Scalable Background Processing",
+    desc: "Built-in support for jobs, queues, and scheduling to power high-performance applications.",
+  },
+];
+
+const about = {
+  title: "Why Laravel Stands Out?",
+  content:
+    "Laravel provides a developer-first environment that accelerates app development while ensuring performance, security, and maintainability. It's the preferred choice for startups and enterprises alike.",
+  image: "/images/services/laravel.svg"
+};
+---
+
+<ServiceLayout
+  title="Laravel Development Services"
+  description="Build fast, secure, scalable Laravel solutions for real-world business needs."
+  breadcrumbs={[
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Laravel" }
+  ]}
+>
+  <!-- HERO -->
+  <section class="pt-16 sm:pt-24">
+    <HeroSection
+      titleTop="Laravel"
+      titleAccent="Development"
+      subtitleHtml="Build <strong>secure</strong> and <strong>scalable</strong> applications with Laravel — trusted for clean code, fast APIs, and modern UIs."
+      buttons={[
+        { label: "Talk to Developer", href: "/contact", variant: "primary" },
+        { label: "View Portfolio", href: "/portfolio", variant: "secondary" }
+      ]}
+    />
+  </section>
+
+  <!-- FEATURES -->
+  <section class="py-24 sm:py-32 bg-[var(--surface-light)] dark:bg-[var(--surface-dark)]">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] mb-10">
+        Key Laravel Features
+      </h2>
+      <ServiceFeatureGrid items={features} />
+    </div>
+  </section>
+</ServiceLayout>

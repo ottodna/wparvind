@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-import Hero2Section from '../components/Hero2Section.astro';
+import HeroSection from '../components/HeroSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import FeaturesSection from '../components/FeaturesSection.astro';
@@ -10,10 +10,78 @@ import CtaSection from '../components/CtaSection.astro';
 ---
 
 <Layout title="WordPress Developer - Arvind">
-	<Hero2Section /> {/* No breadcrumbs prop needed, defaults to 'Home' */}
-  <ServicesSection />
-  <AboutSection />
-  <FeaturesSection />
-  <TestimonialsSection />
-  <CtaSection />
+  <HeroSection 
+    titleTop="Expert WordPress Solutions"
+    titleAccent="Engineered for Business Growth"
+    subtitleHtml="I’m <strong class='text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] font-semibold'>Arvind Sharma</strong>, a specialist in high-performance, scalable WordPress development. Trusted by over <strong class='font-semibold'>1000+ global clients</strong> to build, scale, and secure their digital presence."
+    buttons={[
+      { label: "View My Work", href: "/portfolio", variant: "primary" },
+      { label: "Get In Touch", href: "/contact", variant: "secondary" },
+      { label: "Explore Services", href: "/services", variant: "outline" }
+    ]}
+  />
+
+  <ServicesSection
+    title="Services I Offer"
+    subtitle="Build scalable websites, backend systems, and mobile apps tailored to your business needs."
+    services={[
+      {
+        title: "WordPress Development",
+        slug: "wordpress",
+        desc: "Custom themes, SEO, WooCommerce, and blazing-fast sites.",
+        icon: "mdi:wordpress"
+      },
+      {
+        title: "Laravel Development",
+        slug: "laravel",
+        desc: "REST APIs, dashboards, and backend systems with Laravel.",
+        icon: "mdi:language-php"
+      },
+      {
+        title: "Flutter Development",
+        slug: "flutter",
+        desc: "Cross-platform mobile apps for iOS and Android.",
+        icon: "mdi:cellphone"
+      }
+    ]}
+  />
+
+  <AboutSection
+    title="About Me"
+    description="I'm Arvind Sharma, a dedicated WordPress developer with 8+ years of experience building fast, SEO-optimized websites. Based in Panchkula, I work remotely with global clients, ensuring clear communication and long-term performance."
+    ctaText="Let's Discuss Your Project"
+    ctaLink="/contact"
+  />
+
+  <FeaturesSection
+    title="Why Work With Me?"
+    features={[
+      { title: "10x Speed", description: "Pages load in under 1 second." },
+      { title: "Mobile-First", description: "Optimized from day one." },
+      { title: "SEO Ready", description: "Clean markup and Core Vitals passed." },
+      { title: "Lifetime Support", description: "Ongoing updates and improvements." }
+    ]}
+  />
+
+  <TestimonialsSection
+    title="What Clients Say"
+    testimonials={[
+      {
+        quote: "Working with Arvind was the best decision we made. Our site is fast, clean, and ranks higher than ever.",
+        name: "Satisfied Client"
+      },
+      {
+        quote: "Arvind exceeded our expectations with a clean and optimized custom WordPress build.",
+        name: "Happy Partner"
+      }
+    ]}
+  />
+
+  <CtaSection
+    title="Custom WordPress Website for Your Business"
+    subtitle="Let's discuss your goals and build a digital presence that delivers real results."
+    ctaText="Let's Talk"
+    ctaLink="/contact"
+    imageSrc="/arvind-cta-photo.webp"
+  />
 </Layout>

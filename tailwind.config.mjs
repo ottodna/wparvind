@@ -1,6 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
+  darkMode: 'class', // Enable dark mode support
   content: [
     './src/**/*.{astro,html,js,jsx,ts,tsx}',
     './public/**/*.html'  

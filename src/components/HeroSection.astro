@@ -1,46 +1,40 @@
 ---
-// src/components/HeroSection.astro
-import { Icon } from 'astro-icon/components'; // Using astro-icon for separators
-
-// Define the expected props, especially for dynamic breadcrumbs
 export interface Props {
-  /** Array of breadcrumb objects. Last one is current page (no href). */
-  breadcrumbs?: { label: string; href?: string }[];
+  titleTop: string;
+  titleAccent: string;
+  subtitleHtml: string;
+  buttons: { label: string; href: string; variant?: 'primary' | 'secondary' | 'outline' }[];
 }
 
-// Set default breadcrumbs for homepage, or use passed props
-const { breadcrumbs = [{ label: 'Home' }] } = Astro.props;
+const { titleTop, titleAccent, subtitleHtml, buttons } = Astro.props;
 ---
 
-<section class="bg-background pt-8 pb-16 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-32"> {/* Changed background to bg-background */}
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="bg-[var(--background-light)] dark:bg-[var(--background-dark)] pt-20 pb-28 transition-all duration-200 ease-in-out">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] leading-tight">
+      {titleTop} <br />
+      <span class="text-[var(--primary)]">{titleAccent}</span>
+    </h1>
 
-    <div class="text-center">
-      <h1 class="text-4xl font-extrabold tracking-tight text-text sm:text-5xl md:text-6xl lg:text-7xl"> {/* Changed text color to text-text */}
-        <span class="block xl:inline">Professional WordPress</span>
-        <span class="block text-primary xl:inline">Developer</span> {/* Changed text color to text-primary */}
-        <span class="block text-lg sm:text-xl font-semibold text-secondary mt-2">with 8+ Years of Experience</span> {/* Changed text color to text-secondary */}
-      </h1>
+    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-[var(--text-secondary-light)] dark:text-[var(--text-secondary-dark)] leading-relaxed font-sans">
+      <Fragment set:html={subtitleHtml} />
+    </p>
 
-      <p class="mt-6 max-w-md mx-auto text-base text-secondary sm:text-lg md:mt-8 md:max-w-3xl md:text-xl lg:text-lg xl:text-xl leading-relaxed"> {/* Changed text color to text-secondary for softer paragraph */}
-        Hey, I’m <strong class="font-semibold text-text">Arvind Sharma</strong>, a WordPress developer with <strong class="font-semibold text-text">8+ years of experience</strong> and over <strong class="font-semibold text-text">1000 successful projects</strong>. Based in Panchkula, India, I operate as a full-time independent developer, offering the flexibility and convenience of remote collaboration. {/* Changed bold text color to text-text for emphasis */}
-      </p>
-
-      <div class="mt-8 sm:mt-10 flex flex-wrap justify-center gap-4">
-        {/* Primary Button */}
-        <a href="/portfolio" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary transition duration-150 ease-in-out transform hover:scale-105"> {/* Changed to bg-primary, hover:brightness-90, focus:ring-primary, added focus:ring-offset-background */}
-          View My Work
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      {buttons.map(btn => (
+        <a
+          href={btn.href}
+          class={`btn ${
+            btn.variant === 'secondary'
+              ? 'btn-secondary'
+              : btn.variant === 'outline'
+              ? 'text-[var(--text-secondary-light)] dark:text-[var(--text-secondary-dark)] bg-gray-100 dark:bg-[var(--header-dark)] hover:bg-gray-200 dark:hover:bg-[var(--border-dark)]'
+              : 'btn-primary'
+          } transform hover:scale-105`}
+        >
+          {btn.label}
         </a>
-        {/* Outlined Primary Button */}
-        <a href="/contact" class="inline-flex items-center justify-center px-8 py-3 border border-primary text-base font-medium rounded-md text-primary bg-background hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary transition duration-150 ease-in-out transform hover:scale-105"> {/* Changed to outlined primary style: border-primary, text-primary, bg-background, hover:bg-primary, hover:text-white, focus:ring-primary */}
-          Get In Touch
-        </a>
-        {/* Tertiary/Neutral Button */}
-        <a href="/services" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-secondary bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-secondary transition duration-150 ease-in-out transform hover:scale-105"> {/* Changed text to text-secondary, focus ring to secondary, kept neutral bg */}
-            Explore Services
-        </a>
-      </div>
+      ))}
     </div>
-
   </div>
 </section>
