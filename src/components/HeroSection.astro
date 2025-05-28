@@ -9,32 +9,32 @@ export interface Props {
 const { titleTop, titleAccent, subtitleHtml, buttons } = Astro.props;
 ---
 
-<section class="bg-[var(--background-light)] dark:bg-[var(--background-dark)] pt-20 pb-28 transition-all duration-200 ease-in-out">
+<section class="bg-background-light dark:bg-background-dark pt-20 pb-28 transition-all duration-200 ease-in-out">
   <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] leading-tight">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text-primary-light dark:text-text-primary-dark leading-tight">
       {titleTop} <br />
-      <span class="text-[var(--primary)]">{titleAccent}</span>
+      <span class="text-primary">{titleAccent}</span>
     </h1>
 
-    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-[var(--text-secondary-light)] dark:text-[var(--text-secondary-dark)] leading-relaxed font-sans">
+    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-text-secondary-light dark:text-text-secondary-dark leading-relaxed font-sans">
       <Fragment set:html={subtitleHtml} />
     </p>
 
     <div class="mt-10 flex flex-wrap justify-center gap-4">
-      {buttons.map(btn => (
-        <a
-          href={btn.href}
-          class={`btn ${
-            btn.variant === 'secondary'
-              ? 'btn-secondary'
-              : btn.variant === 'outline'
-              ? 'text-[var(--text-secondary-light)] dark:text-[var(--text-secondary-dark)] bg-gray-100 dark:bg-[var(--header-dark)] hover:bg-gray-200 dark:hover:bg-[var(--border-dark)]'
-              : 'btn-primary'
-          } transform hover:scale-105`}
-        >
-          {btn.label}
-        </a>
-      ))}
+      {buttons.map(btn => {
+        const base = 'inline-block px-5 py-3 rounded-md font-semibold transition-all duration-200';
+        const variant =
+          btn.variant === 'secondary'
+            ? 'border border-primary text-primary bg-transparent hover:bg-primary hover:text-white'
+            : btn.variant === 'outline'
+            ? 'bg-gray-100 dark:bg-header-footer-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-border-dark'
+            : 'bg-primary text-white hover:bg-cta-button-dark';
+        return (
+          <a href={btn.href} class={`${base} ${variant}`}>
+            {btn.label}
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>

@@ -2,32 +2,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const buttons = document.querySelectorAll('#dark-mode-toggle');
 
-  // Apply initial icon
-  const setIcon = (isDark) => {
-    buttons.forEach(btn => btn.textContent = isDark ? '🌙' : '☀️');
+  const sunPath = `M12 2v2m0 16v2m10-10h-2M4 12H2
+    m16.24-7.76l-1.42 1.42M6.34 17.66l-1.42 1.42
+    M17.66 17.66l1.42-1.42M6.34 6.34L4.92 4.92
+    M12 6a6 6 0 100 12 6 6 0 000-12z`;
+
+  const moonPath = `M21 12.79A9 9 0 1111.21 3
+    a7 7 0 0010.08 9.79z`;
+
+  const setTheme = (isDark) => {
+    root.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    buttons.forEach(btn => {
+      const svg = btn.querySelector('svg');
+      const path = svg?.querySelector('path');
+      if (svg && path) {
+        path.setAttribute('d', isDark ? moonPath : sunPath);
+        svg.classList.remove('rotate-0', 'rotate-180');
+        svg.classList.add(isDark ? 'rotate-180' : 'rotate-0');
+      }
+      btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
   };
 
-  // Initial check
   const saved = localStorage.getItem('theme');
   if (saved === 'dark') {
-    root.classList.add('dark');
-    setIcon(true);
+    setTheme(true);
   } else if (saved === 'light') {
-    root.classList.remove('dark');
-    setIcon(false);
+    setTheme(false);
   } else {
-    // default: system
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    root.classList.toggle('dark', prefersDark);
-    setIcon(prefersDark);
+    setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
   }
 
-  // Toggle on click
-  buttons.forEach((btn) => {
+  buttons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const isDark = root.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      setIcon(isDark);
+      const isDark = !root.classList.contains('dark');
+      setTheme(isDark);
     });
   });
 });

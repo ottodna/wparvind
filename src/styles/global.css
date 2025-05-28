@@ -63,8 +63,3 @@ body.dark {
   transition: var(--transition);
   background: white;
 }
-
-body.dark .card {
-  background: var(--header-dark);
-  border: 1px solid var(--border-dark);
-}

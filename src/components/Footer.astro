@@ -8,27 +8,29 @@ const socialLinks = [
 ];
 ---
 
-<footer class="bg-[#F9FAFB] dark:bg-[#1E293B] border-t border-[#E5E7EB] dark:border-[#334155] text-[#1F2937] dark:text-[#F3F4F6] transition-all duration-200 ease-in-out mt-16">
+<footer class="bg-background-light dark:bg-header-footer-dark border-t border-border-light dark:border-border-dark text-text-primary-light dark:text-text-primary-dark transition-all mt-16">
   <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-12 grid md:grid-cols-3 gap-10 text-center md:text-left">
 
     <!-- Branding -->
     <div>
-      <h3 class="text-lg font-semibold">wparvind.com</h3>
-      <p class="mt-2 text-sm text-[#6B7280] dark:text-[#94A3B8]">Engineering reliable WordPress solutions with clarity, speed, and trust.</p>
+      <h3 class="text-lg font-display font-semibold text-primary">wparvind.com</h3>
+      <p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark font-sans">
+        Engineering reliable WordPress solutions with clarity, speed, and trust.
+      </p>
     </div>
 
     <!-- Navigation -->
-    <nav class="space-y-2">
-      <a href="/services" class="block text-sm hover:text-[#1A5CFF] transition">Services</a>
-      <a href="/portfolio" class="block text-sm hover:text-[#1A5CFF] transition">Portfolio</a>
-      <a href="/contact" class="block text-sm hover:text-[#1A5CFF] transition">Contact</a>
-      <a href="/privacy" class="block text-sm hover:text-[#1A5CFF] transition">Privacy Policy</a>
+    <nav class="space-y-2 font-sans">
+      <a href="/services" class="block text-sm hover:text-primary transition">Services</a>
+      <a href="/portfolio" class="block text-sm hover:text-primary transition">Portfolio</a>
+      <a href="/contact" class="block text-sm hover:text-primary transition">Contact</a>
+      <a href="/privacy" class="block text-sm hover:text-primary transition">Privacy Policy</a>
     </nav>
 
     <!-- Social Icons -->
     <div class="flex justify-center md:justify-end space-x-4">
       {socialLinks.map(link => (
-        <a href={link.href} class="text-[#6B7280] dark:text-[#94A3B8] hover:text-[#1A5CFF] transition" target="_blank" rel="noopener noreferrer">
+        <a href={link.href} class="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition" target="_blank" rel="noopener noreferrer">
           <span class="sr-only">{link.name}</span>
           <Fragment set:html={link.icon} />
         </a>
@@ -37,7 +39,7 @@ const socialLinks = [
   </div>
 
   <!-- Footer Bottom -->
-  <div class="text-center border-t border-[#E5E7EB] dark:border-[#334155] py-6 mt-6 text-sm text-[#6B7280] dark:text-[#94A3B8]">
+  <div class="text-center border-t border-border-light dark:border-border-dark py-6 mt-6 text-sm text-text-secondary-light dark:text-text-secondary-dark font-sans">
     &copy; {currentYear} <strong>wparvind.com</strong>. All rights reserved.
   </div>
 </footer>
