@@ -1,5 +1,5 @@
 # Build Astro site
-FROM node:18.19.1-alpine AS builder
+FROM node:lts-alpine
 WORKDIR /app
 COPY . .
 RUN npm ci
