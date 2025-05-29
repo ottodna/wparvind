@@ -1,4 +1,5 @@
 ---
+// src/components/HeroSection.astro
 export interface Props {
   titleTop: string;
   titleAccent: string;
@@ -9,28 +10,53 @@ export interface Props {
 const { titleTop, titleAccent, subtitleHtml, buttons } = Astro.props;
 ---
 
-<section class="bg-background-light dark:bg-background-dark pt-20 pb-28 transition-all duration-200 ease-in-out">
+<section class="bg-background-light dark:bg-background-dark pt-20 pb-28 transition-colors duration-200 ease-in-out">
   <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text-primary-light dark:text-text-primary-dark leading-tight">
+    <h1
+      class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-text-primary-light dark:text-text-primary-dark leading-tight"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
       {titleTop} <br />
-      <span class="text-primary">{titleAccent}</span>
+      <span
+        class="text-primary"
+        data-aos="fade-up"
+        data-aos-delay="250"
+      >
+        {titleAccent}
+      </span>
     </h1>
 
-    <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-text-secondary-light dark:text-text-secondary-dark leading-relaxed font-sans">
+    <p
+      class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-text-secondary-light dark:text-text-secondary-dark leading-relaxed font-sans"
+      data-aos="fade-up"
+      data-aos-delay="400"
+    >
       <Fragment set:html={subtitleHtml} />
     </p>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-4">
+    <div
+      class="mt-10 flex flex-wrap justify-center gap-4"
+      data-aos="fade-up"
+      data-aos-delay="550"
+    >
       {buttons.map(btn => {
-        const base = 'inline-block px-5 py-3 rounded-md font-semibold transition-all duration-200';
-        const variant =
-          btn.variant === 'secondary'
-            ? 'border border-primary text-primary bg-transparent hover:bg-primary hover:text-white'
-            : btn.variant === 'outline'
-            ? 'bg-gray-100 dark:bg-header-footer-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-border-dark'
-            : 'bg-primary text-white hover:bg-cta-button-dark';
+        const baseClasses = 'inline-block px-5 py-3 rounded-md font-semibold transition-all duration-200 ease-in-out'; // Renamed for clarity and ease-in-out added here
+        let variantClasses = '';
+
+        if (btn.variant === 'secondary') {
+          variantClasses = 'border border-primary text-primary bg-transparent hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white';
+        } else if (btn.variant === 'outline') {
+          variantClasses = 'bg-gray-100 dark:bg-header-footer-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-gray-200 dark:hover:bg-border-dark';
+        } else { // Default to primary
+          variantClasses = 'bg-primary text-white hover:bg-blue-700 dark:hover:bg-cta-button-dark'; // Assuming 'blue-700' for light hover, and using cta-button-dark for dark hover
+        }
+        
         return (
-          <a href={btn.href} class={`${base} ${variant}`}>
+          <a
+            href={btn.href}
+            class={`${baseClasses} ${variantClasses}`}
+          >
             {btn.label}
           </a>
         );

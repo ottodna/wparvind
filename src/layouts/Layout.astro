@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import '../styles/global.css'; //
 
 export interface Props {
   title: string;
@@ -15,6 +15,7 @@ const { title, description, currentPath } = Astro.props;
 <html lang="en" class="scroll-smooth">
   <head>
     <script is:inline>
+      // Your existing inline dark mode script
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -29,7 +30,6 @@ const { title, description, currentPath } = Astro.props;
       } else {
         document.documentElement.classList.remove('dark');
       }
-      // You can also set a global JS variable for your main script to pick up
       window.initialTheme = theme;
     </script>
 
@@ -38,7 +38,10 @@ const { title, description, currentPath } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description || title} />
 
-    <!-- SEO + Social Meta -->
+    {/* === AOS CSS === */}
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    {/* SEO + Social Meta */}
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description || title} />
@@ -47,17 +50,24 @@ const { title, description, currentPath } = Astro.props;
     <meta property="og:image" content="/og-image.webp" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Preload Key Assets -->
+    {/* Preload Key Assets */}
     <link rel="preload" as="image" href="/arvind-cta-photo.webp" />
 
-    <!-- Fonts -->
+    {/* Fonts */}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Structured Data JSON-LD -->
-    <script type="application/ld+json">
-      {`{
+    {/* Stylesheets */}
+    {/* Your global.css is already imported in the script section, 
+        but it's common practice to link CSS files in the <head>. 
+        Astro handles this well either way. Keeping it as you have it. */}
+    
+    {/* === ADD THIS LINE FOR AOS CSS === */}
+    <link rel="stylesheet" href="/node_modules/aos/dist/aos.css" />
+
+    {/* Structured Data JSON-LD */}
+    <script type="application/ld+json" set:html={`{
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Arvind Sharma",
@@ -68,7 +78,7 @@ const { title, description, currentPath } = Astro.props;
           "name": "wparvind.com"
         }
       }`}
-    </script>
+    />
   </head>
 
   <body class="font-sans text-[#1F2937] bg-white dark:bg-[#0F172A] dark:text-[#F3F4F6] transition-all duration-200 ease-in-out">
@@ -77,6 +87,15 @@ const { title, description, currentPath } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    {/* Your existing darkMode.js script */}
     <script type="module" src="/scripts/darkMode.js"></script>
+
+    {/* === AOS JavaScript from CDN - CRITICAL: Place it BEFORE your init script === */}
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+
+    {/* Your theme-enhancements.js script (which will now use the global AOS) */}
+    {/* Using defer here as well to ensure it executes after DOM parsing and potentially after other deferred scripts */}
+    <script type="module" src="/scripts/theme-enhancements.js" defer></script>
   </body>
 </html>

@@ -1,5 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "src/pages/ServiceLayout.astro"]
+  "exclude": [
+    "dist",
+    "src/pages/ServiceLayout.astro",
+    "src/components/HeroSection2.astro",
+    "src/layouts/Layout2.astro"
+  ]
 }
