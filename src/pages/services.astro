@@ -1,57 +1,155 @@
 ---
+// src/pages/services.astro
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
-import ServicesSection from '../components/ServicesSection.astro';
-import FeaturesSection from '../components/FeaturesSection.astro';
+import DetailedServices from '../components/DetailedServices.astro'; // Import the new component
+import CtaSection from '../components/CtaSection.astro'; // Assuming you want a CTA at the bottom
 
-const heroTitle = "Explore My Services";
-const heroSubtitle = "From custom WordPress sites to mobile apps and backend systems, I offer modern, scalable solutions tailored to your business.";
-
-const services = [
-  {
-    title: "WordPress Development",
-    slug: "wordpress",
-    desc: "Custom themes, SEO, WooCommerce, and blazing-fast sites.",
-    icon: "mdi:wordpress",
-  },
-  {
-    title: "Laravel Development",
-    slug: "laravel",
-    desc: "REST APIs, dashboards, and backend systems with Laravel.",
-    icon: "mdi:language-php",
-  },
-  {
-    title: "Flutter Development",
-    slug: "flutter",
-    desc: "Cross-platform mobile apps for iOS and Android.",
-    icon: "mdi:cellphone",
-  },
-];
-
-const features = [
-  { title: "Performance First", description: "Every project is optimized for speed and reliability." },
-  { title: "End-to-End Ownership", description: "From planning to launch — I handle it all." },
-  { title: "Built For Growth", description: "Codebases designed to evolve as your business grows." },
-  { title: "Future-Proof Stack", description: "Using the latest frameworks and best practices." },
-];
+// Define the content for the DetailedServices component
+const detailedServicesProps = {
+  mainTitle: "My Full-Stack Development Capabilities",
+  introParagraph: "I specialize in delivering high-performance, production-grade web and mobile applications with full ownership of the entire stack — from frontend UI/UX to backend APIs, infrastructure, and deployment. My goal is to provide you with a complete, reliable, and scalable digital solution.",
+  serviceCategories: [
+    {
+      categoryTitle: "Custom Web Application Development",
+      categoryDescription: "Building tailored web platforms, from interactive frontends to the systems that power them, designed for optimal user experience and business results.",
+      categoryIcon: "mdi:web-box", // Example icon for the category
+      capabilities: [
+        {
+          title: "Modern & Engaging User Interfaces (UI/UX)",
+          whatIdeliver: "Lightning-fast, visually appealing, and intuitive web experiences (Single Page Applications or multi-page sites) that your users will love and that drive engagement.",
+          howIDoIt: "React, Next.js, Remix, Vue.js (on request), Tailwind CSS, Component Libraries (Material UI, ShadCN/UI).",
+          idealFor: "Company websites, e-commerce platforms, SaaS frontends, interactive dashboards, marketing sites.",
+          icon: "mdi:palette-swatch-outline"
+        },
+        {
+          title: "Custom Content Management & Admin Panels",
+          whatIdeliver: "Easy-to-use systems for you to manage your website content, users, and application data efficiently, giving you full control.",
+          howIDoIt: "Bespoke CMS development, integration with headless CMS, intuitive admin interface design.",
+          idealFor: "Websites requiring frequent content updates, membership sites, platforms with user management.",
+          icon: "mdi:cog-box"
+        }
+      ]
+    },
+    {
+      categoryTitle: "Robust Backend & API Solutions",
+      categoryDescription: "The critical engine behind your applications, ensuring data integrity, security, and the scalability needed to grow.",
+      categoryIcon: "mdi:server-network", // Example icon
+      capabilities: [
+        {
+          title: "Scalable & Secure API Development",
+          whatIdeliver: "Powerful and reliable APIs (the communication layer for your software) that can handle growth, connect disparate systems, and protect your data.",
+          howIDoIt: "RESTful APIs with Node.js (Express), GraphQL APIs. Secured with JWT, OAuth2, session strategies, role-based access control, and input validation (Zod/Joi).",
+          idealFor: "Powering mobile apps, web applications, third-party integrations, microservices.",
+          icon: "mdi:api"
+        },
+        {
+          title: "Optimized Database Architecture",
+          whatIdeliver: "Smartly designed database systems that store your information efficiently, ensuring fast access, reliability, and scalability as your business grows.",
+          howIDoIt: "PostgreSQL, MySQL for relational data; MongoDB for NoSQL use cases. Performance enhancements with Redis caching, pub/sub, and job queues (e.g., BullMQ).",
+          idealFor: "Applications requiring complex data storage, user information, product catalogs, real-time data.",
+          icon: "mdi:database-cog-outline"
+        },
+        {
+          title: "Secure & Efficient File Handling",
+          whatIdeliver: "Reliable solutions for securely uploading, storing, and delivering files (images, videos, documents) critical to your application's functionality.",
+          howIDoIt: "Integration with S3-compatible cloud storage services.",
+          idealFor: "Platforms with user-generated content, document management systems, media libraries.",
+          icon: "mdi:folder-upload-outline"
+        }
+      ]
+    },
+    {
+      categoryTitle: "Cloud, DevOps & Application Reliability",
+      categoryDescription: "Ensuring your application is deployed efficiently, runs smoothly 24/7, stays secure against threats, and performs optimally for all users.",
+      categoryIcon: "mdi:shield-star-outline", // Example icon
+      capabilities: [
+        {
+          title: "Modern Deployment & CI/CD Automation",
+          whatIdeliver: "Streamlined processes to get your application live quickly and update it reliably with minimal downtime, improving development velocity.",
+          howIDoIt: "Deployment on VPS, CapRover, Vercel, or Netlify. Dockerized environments for consistency. CI/CD pipelines using GitHub Actions or GitLab CI. Production setups with SSL, HTTPS, Nginx/PM2.",
+          idealFor: "Businesses needing rapid iteration, stable production environments, automated updates.",
+          icon: "mdi:rocket-launch-outline"
+        },
+        {
+          title: "Cloud & Serverless Integration",
+          whatIdeliver: "Leveraging cloud power for scalable, cost-effective solutions, including serverless functions for on-demand compute tasks.",
+          howIDoIt: "AWS provisioning (EC2, S3, IAM), Serverless apps using AWS Lambda or Vercel Functions. CDN & Edge cache via Cloudflare or Fastly.",
+          idealFor: "Applications with variable traffic, cost optimization needs, global reach.",
+          icon: "mdi:cloud-sync-outline"
+        },
+        {
+          title: "Comprehensive Web Application Security",
+          whatIdeliver: "Protecting your valuable application and user data with multiple layers of robust security measures.",
+          howIDoIt: "End-to-end HTTPS/SSL, CORS, CSRF protection, defenses against XSS & SQL injection, secure key/environment variable management, and audit logging.",
+          idealFor: "All applications, especially those handling sensitive data or financial transactions.",
+          icon: "mdi:lock-check-outline"
+        },
+        {
+          title: "Performance Optimization & Monitoring",
+          whatIdeliver: "Ensuring your application is fast-loading and responsive, with proactive monitoring to identify and resolve issues before they impact users.",
+          howIDoIt: "Performance profiling (Lighthouse, Chrome DevTools), error tracking (Sentry, LogRocket), monitoring stack setup (Grafana, Prometheus, uptime bots).",
+          idealFor: "Improving user experience, SEO rankings, application stability.",
+          icon: "mdi:chart-line"
+        }
+      ]
+    },
+    {
+      categoryTitle: "Mobile & Advanced System Design",
+      categoryDescription: "Extending your reach to mobile devices and building sophisticated, future-proof architectures for complex requirements.",
+      categoryIcon: "mdi:cellphone-link", // Example icon
+      capabilities: [
+        {
+          title: "Cross-Platform Mobile App Development",
+          whatIdeliver: "High-quality mobile apps for both iOS and Android, developed efficiently from a single codebase to reach a wider audience and reduce development costs.",
+          howIDoIt: "Flutter, React Native.",
+          idealFor: "Businesses wanting a mobile presence, companion apps to web services, standalone mobile products.",
+          icon: "mdi:cellphone-cog" // logos:flutter or logos:react could also be used here directly
+        },
+        {
+          title: "Progressive Web Apps (PWAs)",
+          whatIdeliver: "Web applications that offer an enhanced, app-like experience, including offline capabilities and push notifications, installable directly from the browser.",
+          howIDoIt: "Utilizing service workers, web app manifests, and modern browser APIs.",
+          idealFor: "Improving user engagement, offline access, faster load times without app store submissions.",
+          icon: "mdi:web-plus"
+        },
+        {
+          title: "Advanced System Architecture",
+          whatIdeliver: "Designing complex systems built for scalability, maintainability, and real-time interactivity to handle demanding business logic.",
+          howIDoIt: "Microservices architecture, Clean DDD (Domain-Driven Design) structure, Real-time features (WebSockets, Server-Sent Events), Message queues, background jobs, and event-driven flows.",
+          idealFor: "Large-scale platforms, applications with high concurrency, systems requiring decoupled services.",
+          icon: "mdi:lan-connect"
+        }
+      ]
+    },
+    // You can add the "AI & Automation Integration" and "Collaboration & Workflow" as separate categories
+    // or integrate relevant points into the descriptions above or into a final "How I Work" section.
+    // For brevity here, I'm focusing on the core technical service offerings first.
+  ]
+};
 ---
 
-<Layout title="Services - Arvind" description="Explore WordPress, Laravel, and Flutter services by Arvind Sharma. Built for speed, SEO, and growth.">
+<Layout 
+  title="My Web Development Services - Custom Solutions by Arvind" 
+  description="Explore the comprehensive full-stack web and mobile development services I offer, from custom app development and API design to cloud deployment and ongoing support."
+>
   <HeroSection
     titleTop="Web Development Services"
     titleAccent="Vision, Code, Excellence"
     subtitleHtml="From <strong class='text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] font-semibold'>custom web applications</strong> to specialized <strong class='text-[var(--text-primary-light)] dark:text-[var(--text-primary-dark)] font-semibold'>WordPress & Laravel</strong>, I deliver scalable, business-driven solutions."
     buttons={[
-      { label: "Discuss Service Needs", href: "/contact", variant: "primary" }, // "Your" removed for brevity
-      { label: "View My Work", href: "/portfolio", variant: "secondary" },
+      { label: "Discuss Your Project Needs", href: "/contact", variant: "primary" },
+      { label: "View My Portfolio", href: "/portfolio", variant: "secondary" },
     ]}
   />
 
-  <ServicesSection
-    title="What I Offer"
-    subtitle="Build scalable websites, backend systems, and mobile apps tailored to your business goals."
-    services={services}
-  />
+  <DetailedServices {...detailedServicesProps} />
 
-  <FeaturesSection title="Why Choose Me?" features={features} />
+  <CtaSection
+    title="Ready to Build Your Next Project?"
+    subtitle="Let's discuss your specific requirements and how my expertise can bring your vision to life."
+    ctaText="Get a Free Consultation"
+    ctaLink="/contact"
+    imageSrc="/arvind-cta-photo.webp"
+  />
 </Layout>

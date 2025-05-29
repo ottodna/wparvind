@@ -1,12 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
 import HeroSection from '../components/HeroSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import FeaturesSection from '../components/FeaturesSection.astro';
 import TestimonialsSection from '../components/TestimonialsSection.astro';
 import CtaSection from '../components/CtaSection.astro';
+import DetailedServices from '../components/DetailedServices.astro';
+
+const homepageDetailedServicesProps = {
+  mainTitle: "Core Development Expertise",
+  introParagraph: "I build high-performance, scalable, and secure digital solutions across the full stack. Here's a look at some of my key service areas:",
+  serviceCategories: [
+    {
+      categoryTitle: "Custom Web Application Development",
+      categoryDescription: "Crafting bespoke web platforms with engaging frontends and powerful functionalities tailored to your business.",
+      categoryIcon: "mdi:web-box",
+      capabilities: [
+        {
+          title: "Modern & Engaging User Interfaces (UI/UX)",
+          whatIdeliver: "Lightning-fast, visually appealing, and intuitive web experiences (Single Page Applications or multi-page sites) that drive user engagement and conversions.",
+          howIDoIt: "React, Next.js, Remix, Tailwind CSS, Component Libraries (Material UI, ShadCN/UI).",
+          icon: "mdi:palette-swatch-outline"
+        },
+        {
+          title: "Custom Content Management & Admin Panels",
+          whatIdeliver: "User-friendly systems empowering you to manage your website content, users, and application data efficiently.",
+          howIDoIt: "Bespoke CMS development, integration with headless CMS, intuitive admin interface design.",
+          icon: "mdi:cog-box"
+        }
+      ]
+    },
+    {
+      categoryTitle: "Robust Backend & API Solutions",
+      categoryDescription: "Building the secure and scalable engine your applications need to perform reliably and grow with your business.",
+      categoryIcon: "mdi:server-network",
+      capabilities: [
+        {
+          title: "Scalable & Secure API Development",
+          whatIdeliver: "Powerful APIs (RESTful & GraphQL) that serve as a reliable communication layer for your web and mobile applications, ensuring secure data exchange.",
+          howIDoIt: "Node.js (Express), JWT, OAuth2, Role-Based Access Control, Input Validation (Zod/Joi).",
+          icon: "mdi:api"
+        },
+        {
+          title: "Optimized Database Architecture",
+          whatIdeliver: "Intelligently designed database systems for efficient data storage, fast access, and robust performance as your needs evolve.",
+          howIDoIt: "PostgreSQL, MySQL, MongoDB, Redis caching & job queues.",
+          icon: "mdi:database-cog-outline"
+        }
+      ]
+    },
+    {
+      categoryTitle: "Cloud, DevOps & Application Reliability",
+      categoryDescription: "Ensuring your applications are deployed efficiently, run smoothly 24/7, and are fortified against modern security threats.",
+      categoryIcon: "mdi:shield-star-outline",
+      capabilities: [
+        {
+          title: "Modern Deployment & CI/CD Automation",
+          whatIdeliver: "Streamlined, automated processes for rapid and reliable application deployment and updates with minimal downtime.",
+          howIDoIt: "VPS, CapRover, Vercel, Netlify, Docker, GitHub Actions/GitLab CI, Nginx/PM2.",
+          icon: "mdi:rocket-launch-outline"
+        },
+        {
+          title: "Comprehensive Web Application Security",
+          whatIdeliver: "Multi-layered security strategies to protect your application and user data from common vulnerabilities and threats.",
+          howIDoIt: "HTTPS/SSL, CORS, CSRF, XSS/SQL Injection prevention, secure key management.",
+          icon: "mdi:lock-check-outline"
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <Layout title="WordPress Developer - Arvind">
@@ -20,35 +84,28 @@ import CtaSection from '../components/CtaSection.astro';
     ]}
   />
 
-  <ServicesSection
-    title="Services I Offer"
-    subtitle="Build scalable websites, backend systems, and mobile apps tailored to your business needs."
-    services={[
-      {
-        title: "WordPress Development",
-        slug: "wordpress",
-        desc: "Custom themes, SEO, WooCommerce, and blazing-fast sites.",
-        icon: "mdi:wordpress"
-      },
-      {
-        title: "Laravel Development",
-        slug: "laravel",
-        desc: "REST APIs, dashboards, and backend systems with Laravel.",
-        icon: "mdi:language-php"
-      },
-      {
-        title: "Flutter Development",
-        slug: "flutter",
-        desc: "Cross-platform mobile apps for iOS and Android.",
-        icon: "mdi:cellphone"
-      }
-    ]}
-  />
+  <DetailedServices {...homepageDetailedServicesProps} />
+
+  <div class="text-center pb-20 pt-4 bg-background-light dark:bg-background-dark">
+    <a 
+      href="/services" 
+      class="inline-block bg-primary text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 dark:hover:bg-cta-button-dark transition-all duration-200 ease-in-out transform hover:scale-105"
+      data-aos="fade-up"
+    >
+      Explore All My Services & Capabilities
+    </a>
+  </div>
 
   <AboutSection
-    title="About Me"
-    description="I'm Arvind Sharma, a dedicated WordPress developer with 8+ years of experience building fast, SEO-optimized websites. Based in Panchkula, I work remotely with global clients, ensuring clear communication and long-term performance."
-    ctaText="Let's Discuss Your Project"
+    title="Meet Your Dedicated Developer"
+    contentParagraphs={[
+      "Hello! I'm Arvind Sharma, the full-stack developer and technical mind behind wparvind.com. For <strong class='text-text-primary-light dark:text-text-primary-dark font-semibold'>over 8 years</strong>, I've been passionate about crafting exceptional web experiences that not only look great but drive tangible business results.",
+      "My mission is to provide <strong class='text-text-primary-light dark:text-text-primary-dark font-semibold'>agency-level quality</strong> and dedicated technical support, but with the personal attention and <strong class='text-text-primary-light dark:text-text-primary-dark font-semibold'>affordability</strong> that an independent expert offers. I thrive on solving complex challenges and translating your vision into efficient, future-proof digital solutions.",
+      "Though based in Panchkula, India, I seamlessly collaborate with <strong class='text-text-primary-light dark:text-text-primary-dark font-semibold'>global clients</strong>, leveraging clear communication and modern tools to ensure your project's success, no matter the distance."
+    ]}
+    imageUrl="/arvind-cta-photo.webp"
+    imageAlt="Arvind Sharma, Full-Stack Web Developer"
+    ctaText="Ready to Build Something Great?"
     ctaLink="/contact"
   />
 
